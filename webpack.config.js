@@ -4,6 +4,10 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+//llamamos este recurso
+
+
 module.exports = {
  /* Aquí indicamos el elemento inicial de nuestra app.
     O sea, nuestro punto de entrada */    
@@ -44,6 +48,11 @@ module.exports = {
     use:{
         loader:'babel-loader',// de esta forma ya tenemos la configuracion necesaria para este recurso
         }
+     },
+     {
+       test:/\.css$/i, //logica para reconocer nuestros archivos css
+       use:[MiniCssExtractPlugin.loader,
+      'css-loader'],//cual es elemento que vamos a  recibir
      }
    ]
  },
@@ -54,10 +63,12 @@ module.exports = {
         inject:true,
         template:'./public/index.html',
         filename:'./index.html',
-    })// como argumento se pone inject para que haga la incersion de html
+    }),// como argumento se pone inject para que haga la incersion de html
     //luego un template que es donde se encuentra
     //filename x estandar se usa el msimo nombre en este caso html y lo pondra en la carpeta de  distribution
 
+     
+    new MiniCssExtractPlugin(),//utilizacion de nuestro plugin
  ]
 
 
