@@ -1,4 +1,16 @@
-@import "https://fonts.googleapis.com/css?family=Ubuntu:300,400,500";
+/* @import "https://fonts.googleapis.com/css?family=Ubuntu:300,400,500"; */
+@font-face{
+	font-family:'Ubuntu';
+	src:url('../assets/fonts/ubuntu-regular.woff2') format('woff2'),
+	url('../assets/fonts/ubuntu-regular.woff') format('woff');
+	font-weight:400;
+	font-style: normal;
+
+}
+/*cambiamos el recurso establecemos el nombre en el font family
+src lo trae desde la pc
+ en la url mas abajo seguimos buscando nuestra url,el font wight y style son los normales*/
+
 
 html {
 	font-family: sans-serif;

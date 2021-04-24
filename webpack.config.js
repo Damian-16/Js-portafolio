@@ -26,6 +26,8 @@ module.exports = {
         path: path.resolve(__dirname,'dist'),//si ponemos 'dist'es el standar del nombre del proyecto
         /* Y colocamos el nombre del .js que va guardar */
         filename:'main.js',
+
+        assetModuleFilename:'assets/images/[hash][ext][query]',//esta es la config necesaria para nuestras imgs y nuestras fonts
    },
     /* Vamos a indicar con extensiones vamos a trabajar en
     este proyecto */
@@ -60,6 +62,21 @@ module.exports = {
      {
        test:/\.png/,
        type:'asset/resource'
+     },
+     {
+       test:/\.(woff|woff2)$/,
+       use:{
+         loader:'url-loader',
+         options:{
+           limit:1000,
+           mimetype:"application/font-woff",//tipo de dato que estamos utilizando
+           name:"[name].[ext]",//que respete el nombre que tiene  la extension
+           outputPath:"./assets/fonts/",//lleva este recurso hasta este lugar
+           publicPath:"./assets/fonts/",//
+           esModule:false,
+         },
+
+       }
      }
    ]
  },
