@@ -50,15 +50,16 @@ module.exports = {
         }
      },
      {
-       test:/\.css$/i, //logica para reconocer nuestros archivos css
+       test:/\.css|.styl$/i, //logica para reconocer nuestros archivos css y el preprocesador stylus
        use:[MiniCssExtractPlugin.loader,
-      'css-loader'],//cual es elemento que vamos a  recibir
+      'css-loader',
+    'stylus-loader'],//cual es elemento que vamos a  recibir
      }
    ]
  },
 
  plugins:[
-    //aca se añade el HtmlWebpackPluginq ue fue declarado arriba
+    //aca se añade el HtmlWebpackPlugin que fue declarado arriba
     new HtmlWebpackPlugin({
         inject:true,
         template:'./public/index.html',
