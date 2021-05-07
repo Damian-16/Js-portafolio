@@ -17,6 +17,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 
+const {CleanWebpackPlugin} = require('clean-webpack-plugin');//traemos un elemento para limpiar el build en producion
+
+
 
 module.exports = {
  /* Aquí indicamos el elemento inicial de nuestra app.
@@ -119,6 +122,7 @@ module.exports = {
       ]
     }),
     new Dotenv(),
+    new CleanWebpackPlugin(),
   ],
 optimization:{
    minimize:true,
