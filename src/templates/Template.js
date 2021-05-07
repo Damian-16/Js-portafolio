@@ -1,10 +1,10 @@
-import getData from '../utils/getData.js';
+import getData from '@utils/getData.js';
 
-import github from '../assets/images/github.png'; // se traen las imagenes
+import github from '@images/github.png'; // se traen las imagenes
 
-import twitter from '../assets/images/twitter.png';
+import twitter from '@images/twitter.png';
 
-import instagram from '../assets/images/instagram.png';
+import instagram from '@images/instagram.png';
 
 
 

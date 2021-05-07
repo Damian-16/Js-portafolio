@@ -13,6 +13,11 @@ const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 const TerserPlugin = require('terser-webpack-plugin');
 
+
+const Dotenv = require('dotenv-webpack');
+
+
+
 module.exports = {
  /* Aquí indicamos el elemento inicial de nuestra app.
     O sea, nuestro punto de entrada */    
@@ -28,7 +33,8 @@ module.exports = {
     //asi cuando enviamos esto a un servidor par apreparar nuestro proyecto va  a utilizar el directorio que esta encontrandose este proyecto
         path: path.resolve(__dirname,'dist'),//si ponemos 'dist'es el standar del nombre del proyecto
         /* Y colocamos el nombre del .js que va guardar */
-        filename:'main.js',
+        filename:'[name].[contenthash].js', // cambiamos el anterior llamado filename:'main.js'
+
 
         assetModuleFilename:'assets/images/[hash][ext][query]',//esta es la config necesaria para nuestras imgs y nuestras fonts
    },
@@ -38,7 +44,13 @@ module.exports = {
 
          /* Importante pasar las extensiones con las que vamos a
         trabajar, como .jsx (React.js)  */
-        extensions: ['.js']
+        extensions: ['.js'],
+        alias:{
+          '@utils': path.resolve(__dirname,'src/utils'),//path es para saber donde estamos,luego de dirname es la ubicacion de donde esta utils para llamarlo con alias 
+          '@templates': path.resolve(__dirname,'src/templates'),
+          '@styles': path.resolve(__dirname,'src/styles'),
+          '@images': path.resolve(__dirname,'src/assets/images')
+        }
     },
 
  //un modulo que es un objeto
@@ -73,9 +85,9 @@ module.exports = {
          options:{
            limit:1000,
            mimetype:"application/font-woff",//tipo de dato que estamos utilizando
-           name:"[name].[ext]",//que respete el nombre que tiene  la extension
-           outputPath:"./assets/fonts/",//lleva este recurso hasta este lugar
-           publicPath:"./assets/fonts/",//
+           name:"[name].[contenthash].[ext]",//que respete el nombre que tiene  la extension
+           outputPath:"../assets/fonts/",//lleva este recurso hasta este lugar
+           publicPath:"../assets/fonts/",//
            esModule:false,
          },
 
@@ -95,7 +107,9 @@ module.exports = {
     //filename x estandar se usa el msimo nombre en este caso html y lo pondra en la carpeta de  distribution
 
      
-    new MiniCssExtractPlugin(),//utilizacion de nuestro plugin
+    new MiniCssExtractPlugin({
+      filename:'assets/[name].[contenthash].css'//para que obtenga los cambios necesarios en cada build  asi como tambien la optimizacion que estamos agregandole a css y js
+    }),//utilizacion de nuestro plugin
     new CopyPlugin({
       patterns:[ //aca trae un array de un objeto
         {
@@ -103,7 +117,8 @@ module.exports = {
           to:"assets/images"// a donde lo vamos  a mover
         }
       ]
-    })
+    }),
+    new Dotenv(),
   ],
 optimization:{
    minimize:true,
