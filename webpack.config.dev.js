@@ -38,6 +38,7 @@ module.exports = {
    
     mode : 'development',
     // watch:true,
+    devtool:'source-map',//nos permite generar un mapa en formato json de nuestro codigo
     resolve:{
 
       
