@@ -16,6 +16,7 @@ const Dotenv = require('dotenv-webpack');
 
 
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');//traemos un elemento para limpiar el build en producion
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 
 
@@ -36,7 +37,7 @@ module.exports = {
    },
    
     mode : 'development',
-    watch:true,
+    // watch:true,
     resolve:{
 
       
@@ -110,13 +111,14 @@ module.exports = {
       ]
     }),
     new Dotenv(),
+    new BundleAnalyzerPlugin(),
  
   ],
   devServer: {
     contentBase:path.join(__dirname,'dist'),
     compress:true,
     historyApiFallback:true,
-    port:3006,
+    port:3005,
   }
 
 }

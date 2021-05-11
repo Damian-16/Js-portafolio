@@ -294,7 +294,8 @@ body {
 }
 
 .card_value {
-	color: #2c2e31;
+	
+	color: #cd486b;
 	font-size: 38px;
 	margin: 5px;
 	text-transform: capitalize
