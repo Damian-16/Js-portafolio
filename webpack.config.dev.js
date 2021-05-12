@@ -1,11 +1,11 @@
 const path = require('path');
 
-//se añade el recurso html-webpackPlugin
+
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-//llamamos este recurso
+
 
 const CopyPlugin =require('copy-webpack-plugin');
 
@@ -15,8 +15,8 @@ const CopyPlugin =require('copy-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');//traemos un elemento para limpiar el build en producion
-const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');//si esto tira error se le agrega .bundleAnalyzerPlugin; al final de ese parentesis
 
 
 
@@ -118,7 +118,7 @@ module.exports = {
   devServer: {
     contentBase:path.join(__dirname,'dist'),
     compress:true,
-    historyApiFallback:true,
+    historyApiFallback:true,//esto es para poder navegar entre pantallas en la url
     port:3005,
   }
 
